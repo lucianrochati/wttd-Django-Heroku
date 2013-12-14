@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import dj_database_url
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+from unipath import Path
+
+BASE_DIR = Path(__file__).parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -19,12 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=5hp6c$#t%!@4pu$q&ght)3o1d-c+2xa1+vellkn523qk_vroc'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', 'heroku.com.br']
 
 
 # Application definition
@@ -37,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventex.core',
+    'eventex.subscriptions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,17 +60,28 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+#
+#
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd3lbci2m06c6ku',
-        'HOST': 'ec2-54-204-31-33.compute-1.amazonaws.com',
+        'NAME': 'd4qo2q0kl0tokj',
+        'HOST': 'ec2-54-204-47-70.compute-1.amazonaws.com',
         'PORT': 5432,
-        'USER': 'qpvoqdblsnjokt',
-        'PASSWORD': 'TLhtxKvmen94uS9SK-ecPzxARV'
-    }
+        'USER': 'remuwyfyvlsjvz',
+       'PASSWORD': '9CVx_e_6mI25mxEPoaMEsjySRH'
+   }
 }
+
+
+#DATABASES = {
+#'default': {
+#'ENGINE': 'django.db.backends.sqlite3',
+#'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#'NAME': BASE_DIR.child('db.sqlite3'),
+#}
+#}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -84,4 +100,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'

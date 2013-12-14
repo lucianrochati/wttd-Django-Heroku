@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{%  block content %}
+<form action="." method="post">
+    {%  csrf_token %}
+    <label for="{{ form.name.id_for_label }}">{{ form.name.label }}:</label>
+    {{ form.name }}
+    {{ form.name.errros }}
+     <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}:</label>
+    {{ form.cpf }}
+    {{ form.cof.errros }}
+     <label for="{{ form.email.id_for_label }}">{{ form.email.label }}:</label>
+     {{ form.email }}
+     {{ form.email.errros }}
+     <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}:</label>
+     {{ form.phone }}
+     {{ form.phone.errros }}
+
+    <input type="submit" value="Enviar">
+</form>
+{%  endblock content%}
